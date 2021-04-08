@@ -1,0 +1,145 @@
+configs:
+    satisfactory version: "1.2.3"
+
+    thumbnail path prefix: resource/texture/thumbnail/
+    texture path prefix: resource/texture/original/
+    texture extension: .png
+---
+display names:
+    english:
+        miner mk 1: Miner Mk.1
+        miner mk 2: Miner Mk.2
+        miner mk 3: Miner Mk.3
+    
+    korean:
+        miner mk 1: 채굴기 Mk.1
+        miner mk 2: 채굴기 Mk.2
+        miner mk 3: 채굴기 Mk.3
+---
+recipes:
+    miner mk 1:
+        inputs:
+            0:
+                name: portable miner
+                count: 1
+            1:
+                name: iron plate
+                count: 10
+            2:
+                name: concrete
+                count: 10
+    
+    miner mk 2:
+        inputs:
+            0:
+                name: portable miner
+                count: 2
+            1:
+                name: encased industrial beam
+                count: 10
+            2:
+                name: steel pipe
+                count: 20
+            3:
+                name: modular frame
+                count: 10
+    
+    miner mk 3:
+        inputs:
+            0:
+                name: portable miner
+                count: 3
+            1:
+                name: heavy modular frame
+                count: 4
+            2:
+                name: steel pipe
+                count: 20
+            3:
+                name: turbo motor
+                count: 5
+            4:
+                name: computer
+                count: 5
+    
+    iron plate:
+        inputs:
+            0:
+                name: iron ingot
+                count: 30
+        outputs:
+            0:
+                name: iron plate
+                count: 2
+        building:
+            name: constructor
+            time: 6
+        
+    coated iron plate:
+        inputs:
+            0:
+                name: iron ingot
+                count: 10
+            1:
+                name: plastic
+                count: 2
+        outputs:
+            0:
+                name: iron plate
+                count: 15
+        building:
+            name: assembler
+            time: 12
+            
+---
+buildings:
+    miners:
+        miner mk 1:
+            power: 5
+            dimensions: []
+            available recipes:
+                - iron ore
+            output per minute:
+                impure: 30
+                normal: 60
+                pure: 120
+            
+        miner mk 2:
+
+        miner mk 3:
+
+        water extractor:
+
+        oil extractor:
+        
+        resource well extractor:
+
+    factories:
+        smelter:
+            power: 4
+            dimensions: [6, 9, 9]
+            available recipes:
+                - caterium ingot
+                - copper ingot
+                - iron ingot
+                - pure aluminum ingot
+
+        foundry:
+
+        constructor:
+
+        assembler:
+
+        manufacturer:
+
+        packager:
+
+        refinery:
+    
+    generators:
+        biomass burner:
+    
+    conveyors:
+    
+    pipes:
+        
