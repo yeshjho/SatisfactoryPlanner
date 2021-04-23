@@ -104,15 +104,15 @@ buildings:
                 normal: 60
                 pure: 120
             
-        miner mk 2:
+        #miner mk 2:
 
-        miner mk 3:
+        #miner mk 3:
 
-        water extractor:
+        #water extractor:
 
-        oil extractor:
+        #oil extractor:
         
-        resource well extractor:
+        #resource well extractor:
 
     factories:
         smelter:
@@ -124,22 +124,22 @@ buildings:
                 - iron ingot
                 - pure aluminum ingot
 
-        foundry:
+       #foundry:
 
-        constructor:
+        #constructor:
 
-        assembler:
+      #assembler:
 
-        manufacturer:
+        #manufacturer:
 
-        packager:
+        #packager:
 
-        refinery:
+        #refinery:
     
-    generators:
-        biomass burner:
+    #generators:
+        #biomass burner:
     
-    conveyors:
+    #conveyors:
     
-    pipes:
+    #pipes:
         

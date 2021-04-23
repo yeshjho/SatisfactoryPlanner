@@ -13,10 +13,60 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\tests">
+      <UniqueIdentifier>{266d87c9-f87b-4e03-873c-972c9e86dc5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tests\opengl">
+      <UniqueIdentifier>{9ad92731-3683-4049-8a6b-815564738adb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="yaml.cpp">
+      <Filter>Source Files\tests</Filter>
     </ClCompile>
+    <ClCompile Include="opengl.cpp">
+      <Filter>Source Files\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureSet.cpp">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="BatchRenderer.cpp">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Window.h">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureSet.h">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="BatchRenderer.h">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

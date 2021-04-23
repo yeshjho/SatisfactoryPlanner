@@ -1,0 +1,14 @@
+0:
+    imageFilePath: resource/texture/tiles.png
+    textures:
+        first_texture:
+            - 0
+            - 0
+            - 50
+            - 50
+        
+        second_texture:
+            - 50
+            - 0
+            - 50
+            - 50
