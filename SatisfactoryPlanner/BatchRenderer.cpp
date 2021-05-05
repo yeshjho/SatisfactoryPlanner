@@ -78,8 +78,14 @@ BatchRenderer::~BatchRenderer()
 
 ObjectHandle BatchRenderer::AddObject(const Model& model, const glm::mat4& model2WorldTransform)
 {
-	const ObjectHandle newHandle = mNextObjectHandle++;
+	return addObject(model, model2WorldTransform);
+}
 
+
+ObjectHandle BatchRenderer::addObject(const Model& model, const glm::mat4& model2WorldTransform, const ObjectHandle overwriteHandle)
+{
+	const ObjectHandle newHandle = overwriteHandle == std::numeric_limits<ObjectHandle>::max() ? mNextObjectHandle++ : overwriteHandle;
+	
 	// TODO: transform vs. insert for_each
 
 	const VertexIndexType indexStartPos = static_cast<VertexIndexType>(mVertices.size());
@@ -105,7 +111,65 @@ ObjectHandle BatchRenderer::AddObject(const Model& model, const glm::mat4& model
 			return vertex;
 		});
 
+	if (sizeof(decltype(mVertices)::value_type) * mVertices.size() > std::numeric_limits<GLsizei>::max())
+	{
+		// TODO
+		std::exit(-1);
+	}
+
 	return newHandle;
+}
+
+
+void BatchRenderer::ReplaceObject(const ObjectHandle objectHandle, const Model& model, const glm::mat4& model2WorldTransform)
+{
+	/* TODO: design decision
+	 * - should it receive the model?
+	 *	- if not, should we store them?
+	 *		- if so, should we store it as a map and reference as a handle?
+	 *		- if not, it maybe should be at the outside of the renderer
+	 *
+	 * - should we assume that the original and the new will be always have the same length of vertices & indices?
+	 *	- if so, should we check?
+	 *		- maybe only in Debug
+	 *	- if not, would it be ok? since inserting in the middle / shrinking the vector is too slow
+	 *		- even if it's ok, then there's no good in racking my brain to come up with the complicated algorithm
+	 *		  instead of just removing and re-adding it
+	 *			-> tested, wayyyyyyyyyyyyyyyy too slow
+	 */
+	
+	
+	RemoveObject(objectHandle);
+	addObject(model, model2WorldTransform, objectHandle);
+}
+
+
+void BatchRenderer::ApplyMatrixToObject(const ObjectHandle objectHandle, const glm::mat4& model2WorldTransform)
+{
+	const auto vertexIt = mVertexMap.find(objectHandle);
+
+	const bool bVertexNotFound = vertexIt == mVertexMap.end();
+	const bool bIndexNotFound = mIndexMap.count(objectHandle) == 0;
+
+#ifdef _DEBUG
+	if (bVertexNotFound ^ bIndexNotFound)
+	{
+		std::exit(-1);
+	}
+#endif
+
+	if (bVertexNotFound)
+	{
+		return;
+	}
+
+	const ObjectInfo info = vertexIt->second;
+	const auto startIt = std::begin(mVertices) + info.index;
+	std::for_each(startIt, startIt + info.size,
+		[model2WorldTransform](Vertex& vertex)
+		{
+			vertex.position = model2WorldTransform * vertex.position;
+		});
 }
 
 

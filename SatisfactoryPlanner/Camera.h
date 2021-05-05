@@ -11,7 +11,11 @@ public:
 	Camera(const glm::vec3& eye, const glm::vec3& look, const glm::vec3& up, float fov, float aspect, float near, float far) noexcept;
 
 	constexpr Camera& Zoom(float factor) noexcept;
-	constexpr Camera& Forward(float step) noexcept;
+	
+	constexpr Camera& MoveForward(float step) noexcept;
+	constexpr Camera& MoveBackward(float step) noexcept;
+	constexpr Camera& MoveRight(float step) noexcept;
+	constexpr Camera& MoveLeft(float step) noexcept;
 
 	Camera& Yaw(float angle) noexcept;
 	Camera& Pitch(float angle) noexcept;
@@ -59,11 +63,33 @@ constexpr Camera& Camera::Zoom(const float factor) noexcept
 }
 
 
-constexpr Camera& Camera::Forward(const float step) noexcept
+constexpr Camera& Camera::MoveForward(const float step) noexcept
 {
 	mEye += glm::vec3{ step * -mBack };
 
 	mIsWorld2CamDirty = true;
 
 	return *this;
+}
+
+
+constexpr Camera& Camera::MoveBackward(const float step) noexcept
+{
+	return MoveForward(-step);
+}
+
+
+constexpr Camera& Camera::MoveRight(const float step) noexcept
+{
+	mEye += glm::vec3{ step * mRight };
+
+	mIsWorld2CamDirty = true;
+
+	return *this;
+}
+
+
+constexpr Camera& Camera::MoveLeft(const float step) noexcept
+{
+	return MoveRight(-step);
 }

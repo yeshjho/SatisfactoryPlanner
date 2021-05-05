@@ -13,7 +13,7 @@ Camera::Camera(const glm::vec3& eye, const glm::vec3& look, const glm::vec3& up,
 
 Camera& Camera::Yaw(const float angle) noexcept
 {
-	const glm::mat4 rotationMatrix = glm::rotate(angle, mUp);
+	const glm::mat4 rotationMatrix = glm::rotate(angle, /*mUp*/glm::vec3{ 0, 1, 0 });
 
 	mRight = rotationMatrix * glm::vec4{ mRight, 0 };
 	mBack = rotationMatrix * glm::vec4{ mBack, 0 };
@@ -28,8 +28,9 @@ Camera& Camera::Pitch(const float angle) noexcept
 {
 	const glm::mat4 rotationMatrix = glm::rotate(angle, mRight);
 
-	mUp = rotationMatrix * glm::vec4{ mUp, 0 };
+	//mUp = rotationMatrix * glm::vec4{ mUp, 0 };
 	mBack = rotationMatrix * glm::vec4{ mBack, 0 };
+	mUp = glm::cross(mBack, mRight);
 
 	mIsWorld2CamDirty = true;
 

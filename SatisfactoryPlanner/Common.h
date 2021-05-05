@@ -6,6 +6,8 @@ using VertexIndexType = unsigned int;
 using TextureIndexType = float;
 using ObjectHandle = size_t;
 
+using InputCallbackHandle = size_t;
+
 
 template<typename T>
 [[nodiscard]] constexpr unsigned int get_opengl_type() noexcept

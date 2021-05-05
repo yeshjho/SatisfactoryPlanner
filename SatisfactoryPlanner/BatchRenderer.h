@@ -30,12 +30,17 @@ public:
 
 	// TODO: Objects are static for now
 	[[nodiscard]] ObjectHandle AddObject(const Model& model, const glm::mat4& model2WorldTransform = glm::identity<glm::mat4>());
+	void ReplaceObject(ObjectHandle objectHandle, const Model& model, const glm::mat4& model2WorldTransform = glm::identity<glm::mat4>());
+	void ApplyMatrixToObject(ObjectHandle objectHandle, const glm::mat4& model2WorldTransform);
 	void RemoveObject(ObjectHandle objectHandle);
 
 	void Render(const Camera& camera) const;
 
 	[[nodiscard]] constexpr TextureSet& GetTextureSet() noexcept { return mTextureSet; }
 	[[nodiscard]] constexpr const TextureSet& GetTextureSet() const noexcept { return mTextureSet; }
+
+private:
+	ObjectHandle addObject(const Model& model, const glm::mat4& model2WorldTransform, ObjectHandle overwriteHandle = std::numeric_limits<ObjectHandle>::max());
 
 
 
@@ -47,8 +52,8 @@ private:
 	};
 
 private:
-	static constexpr size_t INITIAL_VERTEX_COUNT = 4 * 1000;
-	static constexpr size_t INITIAL_INDEX_COUNT = 4 * 2 * 1000;
+	static constexpr size_t INITIAL_VERTEX_COUNT = 4 * 200000;
+	static constexpr size_t INITIAL_INDEX_COUNT = 4 * 2 * 200000;
 
 	unsigned int mVboHandle;
 	unsigned int mVaoHandle;

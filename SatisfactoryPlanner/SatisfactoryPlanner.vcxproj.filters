@@ -45,6 +45,12 @@
     <ClCompile Include="BatchRenderer.cpp">
       <Filter>Source Files\tests\opengl</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="InputCallback.cpp">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -66,6 +72,12 @@
       <Filter>Source Files\tests\opengl</Filter>
     </ClInclude>
     <ClInclude Include="BatchRenderer.h">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Source Files\tests\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="InputCallback.h">
       <Filter>Source Files\tests\opengl</Filter>
     </ClInclude>
   </ItemGroup>

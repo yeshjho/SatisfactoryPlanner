@@ -6,6 +6,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include "InputManager.h"
+
 
 
 bool Window::ShouldClose() const
@@ -85,28 +87,28 @@ Window create_window()
 	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 #endif
 
-	window.SetWindow(glfwCreateWindow(1366, 768, "titleeee", nullptr, nullptr));
-	if (!window.GetWindow())
+	GLFWwindow* pWindow = glfwCreateWindow(1920, 1080, "titleeee", nullptr, nullptr);
+	if (!pWindow)
 	{
 		std::cerr << "glfw create window failed" << std::endl;
 		std::exit(-1);
 	}
+	window.SetWindow(pWindow);
 
-	glfwMakeContextCurrent(window.GetWindow());
+	glfwMakeContextCurrent(pWindow);
 
-	glfwSetFramebufferSizeCallback(window.GetWindow(),
+	glfwSetFramebufferSizeCallback(pWindow,
 		[](GLFWwindow*, const int width, const int height)
 		{
 			glViewport(0, 0, width, height);
 		});
+
+	glfwSetCursorPosCallback(pWindow, InputManager::_CursorPosCallback);
+	glfwSetMouseButtonCallback(pWindow, InputManager::_MouseButtonCallback);
+	glfwSetScrollCallback(pWindow, InputManager::_MouseScrollCallback);
+	glfwSetKeyCallback(pWindow, InputManager::_KeyCallback);
+
 	/*
-
-
-		glfwSetCursorPosCallback(p_window, [](GLFWwindow*, double x, double y) { if (mouse_moved_callback) mouse_moved_callback(x, y); });
-		glfwSetMouseButtonCallback(p_window, [](GLFWwindow*, int button, int action, int mod) { if (mouse_button_callback) mouse_button_callback(button, action, mod); });
-		glfwSetScrollCallback(p_window, [](GLFWwindow*, double xAmount, double yAmount) { if (mouse_wheel_callback) mouse_wheel_callback(xAmount, yAmount); });
-		glfwSetKeyCallback(p_window, [](GLFWwindow*, int key, int scanCode, int action, int mod) { if (key_button_callback) key_button_callback(key, scanCode, action, mod); });
-
 		glfwSetInputMode(p_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	 */
 
@@ -122,12 +124,12 @@ Window create_window()
 		std::exit(-1);
 	}
 
-	/*
-	 * 		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_CULL_FACE);
 
-		glEnable(GL_DEPTH_TEST);
-	 */
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glEnable(GL_DEPTH_TEST);
 
 #ifdef _DEBUG
 	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);

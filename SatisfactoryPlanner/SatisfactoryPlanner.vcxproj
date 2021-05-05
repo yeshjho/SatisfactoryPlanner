@@ -102,6 +102,8 @@
   <ItemGroup>
     <ClCompile Include="BatchRenderer.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="InputCallback.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="TextureSet.cpp" />
     <ClCompile Include="Vertex.cpp" />
@@ -116,6 +118,8 @@
     <ClInclude Include="BatchRenderer.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="InputCallback.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="TextureSet.h" />
     <ClInclude Include="Vertex.h" />
